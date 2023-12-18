@@ -142,6 +142,7 @@
         prop="applicableGender"
       />
       <el-table-column label="适用人群" align="center" prop="applicableCrowd" />
+      <el-table-column label="排序" align="center" prop="sort" />
       <el-table-column
         label="操作"
         align="center"
@@ -260,6 +261,14 @@
               :key="index"
             ></el-option>
           </el-select>
+        </el-form-item>
+        <el-form-item label="排序" prop="sort">
+          <el-input-number
+            style="width: 220px"
+            v-model="form.sort"
+            @change="handleChangeSort"
+            placeholder="请输入序号"
+          />
         </el-form-item>
         <el-form-item label="商品轮播图" prop="list">
           <div ref="imglist">
@@ -411,6 +420,7 @@ export default {
         applicableCrowd: null,
         list: [],
         price: 10000,
+        sort:null
       },
       // 表单校验
       rules: {},
@@ -424,6 +434,9 @@ export default {
     handleChangePrice(value) {
       console.log(value);
       this.from.price = value;
+    },
+    handleChangeSort(value){
+      this.from.sort = value;
     },
     //上传商品图成功
     uploadSuccess(res, file) {
@@ -709,5 +722,8 @@ export default {
 }
 .el-input__inner {
   width: 218px;
+}
+.el-pagination .el-select .el-input .el-input__inner{
+  width: 100%;
 }
 </style>
